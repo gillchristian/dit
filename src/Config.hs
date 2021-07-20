@@ -23,11 +23,3 @@ configCodec =
   Config
     <$> Toml.text "home" ?= "~/.config/dit" .= confHome
     <*> Toml.text "data" ?= "data.db" .= confData
-
--- function add(a: Int, b: Int): Int { return a + b }
-
-add :: Int -> Int -> Int
-add a b = a + b
-
-addAnyNumber :: Num a => a -> a -> a
-addAnyNumber a b = a + b
