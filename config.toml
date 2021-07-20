@@ -1,0 +1,3 @@
+home = "~/.config/dit"
+
+data = "data.db"

@@ -1,0 +1,96 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: cc8bc756d97e5200645a5b59af63411361e440b25c575db597839757db4becec
+
+name:           dit
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/gillchristian/dit#readme>
+homepage:       https://github.com/gillchristian/dit#readme
+bug-reports:    https://github.com/gillchristian/dit/issues
+author:         Christian Gill
+maintainer:     gillchristian@gmail.com
+copyright:      2021 Christian Gill
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/gillchristian/dit
+
+library
+  exposed-modules:
+      CLI
+      Config
+      Lib
+  other-modules:
+      Paths_dit
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , containers
+    , directory
+    , filepath
+    , optparse-applicative
+    , sqlite-simple
+    , text
+    , time
+    , tomland
+    , transformers
+    , unordered-containers
+  default-language: Haskell2010
+
+executable dit
+  main-is: Main.hs
+  other-modules:
+      Paths_dit
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , containers
+    , directory
+    , dit
+    , filepath
+    , optparse-applicative
+    , sqlite-simple
+    , text
+    , time
+    , tomland
+    , transformers
+    , unordered-containers
+  default-language: Haskell2010
+
+test-suite dit-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_dit
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , containers
+    , directory
+    , dit
+    , filepath
+    , optparse-applicative
+    , sqlite-simple
+    , text
+    , time
+    , tomland
+    , transformers
+    , unordered-containers
+  default-language: Haskell2010
