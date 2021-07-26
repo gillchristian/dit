@@ -2,10 +2,16 @@
 
 module Lib (run) where
 
-import Config (Config, configCodec)
+import Config (Config (..))
+import qualified Config
 import Control.Monad.Trans.Reader (ReaderT)
 import qualified Control.Monad.Trans.Reader as R
+import Data.Maybe (fromMaybe)
+import qualified Data.Text as Text
 import qualified Data.Text.IO as TIO
+import System.Directory.Home (expandTilde)
+import qualified System.Exit as Sys
+import qualified System.IO as Sys
 import qualified Toml
 
 defaultConfigFile :: FilePath
@@ -19,10 +25,16 @@ data Env = Env
 
 type App = ReaderT Env IO
 
-run :: IO ()
-run = do
-  tomlRes <- Toml.decodeFileEither configCodec "config.toml"
+run :: Maybe FilePath -> IO ()
+run mbConfigPath = do
+  configPath <- expandTilde $ fromMaybe defaultConfigFile mbConfigPath
+  eConfig <- Config.readConfigFile configPath
 
-  case tomlRes of
-    Left errs -> TIO.putStrLn $ Toml.prettyTomlDecodeErrors errs
-    Right settings -> TIO.putStrLn $ Toml.encode configCodec settings
+  conf <- case eConfig of
+    Right conf -> pure conf
+    Left err -> do
+      TIO.hPutStrLn Sys.stderr $ "Failed to parse " <> Text.pack configPath <> "\n"
+      -- TODO: pretty error formatting (insead of library errors)
+      Sys.die $ Text.unpack $ Text.strip err
+
+  TIO.putStrLn $ Config.encode conf

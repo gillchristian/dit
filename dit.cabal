@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: cc8bc756d97e5200645a5b59af63411361e440b25c575db597839757db4becec
+-- hash: fc9bae288a9c1551f334da4b700da4f4d003e746a36842f86af1bef1d29609d3
 
 name:           dit
 version:        0.1.0.0
@@ -28,7 +28,11 @@ library
   exposed-modules:
       CLI
       Config
+      Data.Text.ToText
+      Ditfile
+      Habit
       Lib
+      System.Directory.Home
   other-modules:
       Paths_dit
   hs-source-dirs:
@@ -39,7 +43,9 @@ library
     , containers
     , directory
     , filepath
+    , nonempty-containers
     , optparse-applicative
+    , parsec
     , sqlite-simple
     , text
     , time
@@ -62,7 +68,9 @@ executable dit
     , directory
     , dit
     , filepath
+    , nonempty-containers
     , optparse-applicative
+    , parsec
     , sqlite-simple
     , text
     , time
@@ -86,7 +94,9 @@ test-suite dit-test
     , directory
     , dit
     , filepath
+    , nonempty-containers
     , optparse-applicative
+    , parsec
     , sqlite-simple
     , text
     , time

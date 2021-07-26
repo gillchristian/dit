@@ -17,7 +17,9 @@ dependencies:
 - containers
 - directory
 - filepath
+- nonempty-containers
 - optparse-applicative
+- parsec
 - sqlite-simple
 - text
 - time

@@ -1,4 +1,4 @@
-module CLI (run, Command (..)) where
+module CLI (run, Command (..), Options (..)) where
 
 import Options.Applicative ((<**>))
 import qualified Options.Applicative as Opt
@@ -26,6 +26,7 @@ logOpts =
               <> Opt.showDefault
           )
 
+-- TODO move to the module that runs this action ?
 newtype LogOptions = LogOptions
   {logDays :: Int}
   deriving (Eq, Show)

@@ -7,6 +7,6 @@ main :: IO ()
 main = do
   cmd <- CLI.run
 
-  print cmd
+  Lib.run $ CLI.optsConfig cmd
 
-  Lib.run
+  print cmd
