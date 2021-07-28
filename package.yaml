@@ -15,11 +15,13 @@ dependencies:
 - base >= 4.7 && < 5
 - bytestring
 - containers
+- datetime
 - directory
 - filepath
 - nonempty-containers
 - optparse-applicative
 - parsec
+- raw-strings-qq
 - sqlite-simple
 - text
 - time

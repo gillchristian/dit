@@ -1,3 +1,5 @@
 home = "~/.config/dit"
 
 data = "data.db"
+
+week_starts_on = "sun"

@@ -56,10 +56,10 @@ options =
   where
     programm =
       Options
-        <$> Opt.hsubparser (todo <> log)
+        <$> Opt.hsubparser (todo <> logCmd)
         <*> confArg
     todo = Opt.command "todo" todoOpts
-    log = Opt.command "log" logOpts
+    logCmd = Opt.command "log" logOpts
     confArg =
       Opt.optional
         ( Opt.strOption

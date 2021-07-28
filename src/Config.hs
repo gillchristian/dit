@@ -16,8 +16,8 @@ import Toml (TomlCodec, (.=))
 import qualified Toml
 
 data Config = Config
-  { confHome :: Text,
-    confData :: Text,
+  { confHome :: String,
+    confData :: String,
     confWeekStartsOn :: Maybe DayOfWeek
   }
   deriving (Eq, Show)
@@ -52,8 +52,8 @@ dayOfWeek = Toml.dimatch consumer producer . Toml.text
 configCodec :: TomlCodec Config
 configCodec =
   Config
-    <$> Toml.text "home" ?= "~/.config/dit" .= confHome
-    <*> Toml.text "data" ?= "data.db" .= confData
+    <$> Toml.string "home" ?= "~/.config/dit" .= confHome
+    <*> Toml.string "data" ?= "data.db" .= confData
     <*> dayOfWeek "week_starts_on" ?= Just Sunday .= confWeekStartsOn
 
 -- TODO: catch exceptions (file doesn't exist)
