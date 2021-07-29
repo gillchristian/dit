@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: bb496740da9eec98e136f359c1bb01e6d926152ca81d0189843114fe30287d0c
+-- hash: 5b031e4c24412186f2ccaa58818f5faae9aee180f852c908e4db4084a47dc2ed
 
 name:           dit
 version:        0.1.0.0
@@ -30,6 +30,8 @@ library
       Config
       Data.Text.ToText
       Ditfile
+      Env
+      Event
       Habit
       Lib
       System.Directory.Home
