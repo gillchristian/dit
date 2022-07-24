@@ -1,4 +1,4 @@
-module CLI (run, Command (..), Options (..)) where
+module Dit.CLI (run, Command (..), Options (..)) where
 
 import Options.Applicative ((<**>))
 import qualified Options.Applicative as Opt

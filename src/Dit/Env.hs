@@ -1,14 +1,13 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Env
+module Dit.Env
   ( App,
     Env (..),
     runApp,
   )
 where
 
-import Config
 import Control.Monad ((<=<))
 import Control.Monad.Trans.Reader (ReaderT)
 import qualified Control.Monad.Trans.Reader as R
@@ -16,6 +15,7 @@ import Data.Maybe (fromMaybe)
 import qualified Data.Text as Text
 import qualified Data.Text.IO as TIO
 import qualified Database.SQLite.Simple as Sql
+import Dit.Config
 import qualified System.Directory as Dir
 import qualified System.Directory.Home as Dir
 import qualified System.Exit as Sys
@@ -41,7 +41,7 @@ prepareAppEnv mbConfigPath = do
   configPath <- Dir.expandTilde $ fromMaybe defaultConfigFile mbConfigPath
 
   conf <-
-    Config.readConfigFile configPath >>= \case
+    readConfigFile configPath >>= \case
       Right conf -> do
         home <- Dir.expandTilde $ confHome conf
         pure $ conf {confHome = home}

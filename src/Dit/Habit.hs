@@ -1,7 +1,7 @@
 {-# LANGUAGE InstanceSigs #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Habit where
+module Dit.Habit where
 
 import Control.Exception (SomeException (SomeException))
 import Data.Functor (($>), (<&>))
@@ -104,7 +104,7 @@ frequencyP =
     daily = P.string "daily" <* checkWordEnd
     weekly = P.string "week" <* checkWordEnd
     monthly = P.string "month" <* checkWordEnd
-    -- Unsafe is actually safe here because of `sepBy1`
+    -- Safe here because of `sepBy1`
     days = NESet.unsafeFromSet . Set.fromList <$> P.sepBy1 dayOfWeekP P.spaces
     noDays = P.string "no" *> P.spaces *> days
 

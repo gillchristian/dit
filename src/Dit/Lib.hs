@@ -1,11 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Lib where
+module Dit.Lib where
 
 import Control.Monad.IO.Class (liftIO)
-import Env
-import Event
-import Habit
+import Dit.Env
+import Dit.Event
+import Dit.Habit
 
 run :: Maybe FilePath -> IO ()
 run = runApp $ do

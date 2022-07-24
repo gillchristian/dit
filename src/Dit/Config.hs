@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module Config
+module Dit.Config
   ( Config (..),
     encode,
     readConfigFile,
@@ -11,7 +11,7 @@ where
 import qualified Data.Bifunctor as BF
 import qualified Data.Maybe as Maybe
 import Data.Text (Text)
-import Habit
+import Dit.Habit
 import Toml (TomlCodec, (.=))
 import qualified Toml
 

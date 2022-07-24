@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5b031e4c24412186f2ccaa58818f5faae9aee180f852c908e4db4084a47dc2ed
+-- hash: 7826f0d26b039f4572106e8dee0a403dee00c0bcb7d1adac4974a1bb512d00f3
 
 name:           dit
 version:        0.1.0.0
@@ -26,14 +26,16 @@ source-repository head
 
 library
   exposed-modules:
-      CLI
-      Config
+      Data.DateTime
       Data.Text.ToText
-      Ditfile
-      Env
-      Event
-      Habit
-      Lib
+      Dit.CLI
+      Dit.Config
+      Dit.Ditfile
+      Dit.Env
+      Dit.Event
+      Dit.Habit
+      Dit.Lib
+      Dit.Summary
       System.Directory.Home
       Text.Parsec.Extra
   other-modules:
@@ -44,7 +46,6 @@ library
       base >=4.7 && <5
     , bytestring
     , containers
-    , datetime
     , directory
     , filepath
     , nonempty-containers
@@ -70,7 +71,6 @@ executable dit
       base >=4.7 && <5
     , bytestring
     , containers
-    , datetime
     , directory
     , dit
     , filepath
@@ -98,7 +98,6 @@ test-suite dit-test
       base >=4.7 && <5
     , bytestring
     , containers
-    , datetime
     , directory
     , dit
     , filepath

@@ -3,7 +3,7 @@
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module Event where
+module Dit.Event where
 
 import Control.Exception (SomeException (SomeException))
 import Control.Monad (when)
@@ -21,8 +21,8 @@ import Database.SQLite.Simple.Internal (RowParser)
 import Database.SQLite.Simple.Ok (Ok (..))
 import Database.SQLite.Simple.ToField (ToField (toField))
 import Database.SQLite.Simple.ToRow (ToRow (toRow))
-import Ditfile
-import Env
+import Dit.Env
+import Dit.Habit
 import Text.RawString.QQ
 
 data Status

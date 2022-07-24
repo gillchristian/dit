@@ -1,10 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Ditfile
-  ( DayOfWeek (..),
-    Ditfile,
-    Frequency (..),
-    Habit (..),
+module Dit.Ditfile
+  ( Ditfile,
     addHabit,
     dropHabit,
     encode,
@@ -22,7 +19,7 @@ import Data.Maybe (mapMaybe)
 import Data.Text (Text)
 import qualified Data.Text as Text
 import Data.Text.ToText (ToText (..))
-import Habit
+import Dit.Habit
 import qualified Text.Parsec as P
 import Text.Parsec.Extra (lineSpaces)
 import Text.Parsec.Text (Parser)

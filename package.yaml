@@ -15,7 +15,6 @@ dependencies:
 - base >= 4.7 && < 5
 - bytestring
 - containers
-- datetime
 - directory
 - filepath
 - nonempty-containers
