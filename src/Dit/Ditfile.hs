@@ -1,10 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Ditfile
-  ( DayOfWeek (..),
-    Ditfile,
-    Frequency (..),
-    Habit (..),
+module Dit.Ditfile
+  ( Ditfile,
     addHabit,
     dropHabit,
     encode,
@@ -15,59 +12,17 @@ module Ditfile
   )
 where
 
-import Control.Monad (void)
 import Data.Bifunctor (bimap)
 import Data.Function ((&))
-import Data.Functor (($>), (<&>))
 import Data.List (nubBy, (\\))
 import Data.Maybe (mapMaybe)
-import qualified Data.Set as Set
-import qualified Data.Set.NonEmpty as NESet
 import Data.Text (Text)
 import qualified Data.Text as Text
 import Data.Text.ToText (ToText (..))
-import Habit
+import Dit.Habit
 import qualified Text.Parsec as P
+import Text.Parsec.Extra (lineSpaces)
 import Text.Parsec.Text (Parser)
-
-checkWordEnd :: Parser ()
-checkWordEnd = P.notFollowedBy P.alphaNum
-
-lineSpaces :: Parser ()
-lineSpaces = void $ P.many $ P.oneOf " \t"
-
-dayOfWeekP :: Parser DayOfWeek
-dayOfWeekP =
-  P.choice
-    [ P.try (P.string "sun") <* checkWordEnd $> Sunday,
-      P.try (P.string "mon") <* checkWordEnd $> Monday,
-      P.try (P.string "tue") <* checkWordEnd $> Tuesday,
-      P.try (P.string "wed") <* checkWordEnd $> Wednesday,
-      P.try (P.string "thu") <* checkWordEnd $> Thursday,
-      P.try (P.string "fri") <* checkWordEnd $> Friday,
-      P.string "sat" <* checkWordEnd $> Saturday
-    ]
-
-frequencyP :: Parser Frequency
-frequencyP =
-  P.choice
-    [ P.try daily $> Daily,
-      P.try weekly *> weeks <&> Weekly,
-      P.try monthly $> Monthly,
-      P.try (Days <$> days),
-      NoDays <$> noDays
-    ]
-  where
-    daily = P.string "daily" <* checkWordEnd
-    weekly = P.string "week" <* checkWordEnd
-    monthly = P.string "month" <* checkWordEnd
-    -- Unsafe is actually safe here because of `sepBy1`
-    days = NESet.unsafeFromSet . Set.fromList <$> P.sepBy1 dayOfWeekP P.spaces
-    noDays = P.string "no" *> P.spaces *> days
-
-    twoOrThree = P.choice [P.string "2" $> Two, P.string "3" $> Three]
-    -- TODO: Should it fail when it finds numbers?
-    weeks = P.option One $ P.try (P.spaces *> twoOrThree)
 
 habitP :: Parser Habit
 habitP =

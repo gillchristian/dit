@@ -1,7 +1,7 @@
 module Main where
 
-import qualified CLI
-import qualified Lib
+import qualified Dit.CLI as CLI
+import qualified Dit.Lib as Lib
 
 main :: IO ()
 main = do

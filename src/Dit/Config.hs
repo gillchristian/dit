@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module Config
+module Dit.Config
   ( Config (..),
     encode,
     readConfigFile,
@@ -11,13 +11,13 @@ where
 import qualified Data.Bifunctor as BF
 import qualified Data.Maybe as Maybe
 import Data.Text (Text)
-import Habit
+import Dit.Habit
 import Toml (TomlCodec, (.=))
 import qualified Toml
 
 data Config = Config
-  { confHome :: Text,
-    confData :: Text,
+  { confHome :: String,
+    confData :: String,
     confWeekStartsOn :: Maybe DayOfWeek
   }
   deriving (Eq, Show)
@@ -52,8 +52,8 @@ dayOfWeek = Toml.dimatch consumer producer . Toml.text
 configCodec :: TomlCodec Config
 configCodec =
   Config
-    <$> Toml.text "home" ?= "~/.config/dit" .= confHome
-    <*> Toml.text "data" ?= "data.db" .= confData
+    <$> Toml.string "home" ?= "~/.config/dit" .= confHome
+    <*> Toml.string "data" ?= "data.db" .= confData
     <*> dayOfWeek "week_starts_on" ?= Just Sunday .= confWeekStartsOn
 
 -- TODO: catch exceptions (file doesn't exist)

@@ -1,0 +1,40 @@
+# Comments are supported, of course xD
+
+# --- Habit name -----------------------
+
+# A habit's name can be anything besides opening bracket ("{")
+# as it defines the beginning of the frequency
+
+Habit #1 {daily}
+
+Habit 2 (foo/bar) {daily}
+
+*Important habit*: write Haskell {daily}
+
+# --- Frequency ------------------------
+
+Daily habit {daily}       # Comments are supported here as well
+
+Weekly habit {week}       # Every week (counted by week_starts_on)
+
+Monthly habit {month}     # Every calendar month
+
+Bi-weekly habit {week 2}  # This will not be maintained
+
+Only on Wednesdays, Fridays, and Sundays {sun wed fri}
+
+Skip Wednesday and Friday {no wed fri}
+
+Skip weekends {no sun sat}
+
+# --- Normalizing ----------------------
+
+Stream {no sun} # Duplicateds are deleted
+
+Stream {no sun} # But the comments are kept (for now?)
+
+   Spaces{mon}# Spaces and extra lines adjusted
+
+
+
+Extra lines {mon} # Extra lines are removed

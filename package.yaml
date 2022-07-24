@@ -20,6 +20,7 @@ dependencies:
 - nonempty-containers
 - optparse-applicative
 - parsec
+- raw-strings-qq
 - sqlite-simple
 - text
 - time

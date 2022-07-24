@@ -4,7 +4,7 @@ module System.Directory.Home
 where
 
 import System.Directory (getHomeDirectory)
-import System.FilePath (isPathSeparator, (</>))
+import System.FilePath ((</>))
 
 -- TODO: do full expand (https://github.com/npj/expand-path/blob/master/src/System/Unix/ExpandPath/Monad.hs)
 expandTilde :: FilePath -> IO FilePath
